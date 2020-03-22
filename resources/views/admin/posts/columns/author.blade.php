@@ -1,0 +1,1 @@
+<td><a target="_blank" href="{!! url('/admin/users/edit/' . $value->post_author) !!}">{!! $value->author->name !!}</a></td>

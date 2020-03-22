@@ -1,0 +1,1 @@
+<td><span>{!! $value->view_count > 0 ? $value->view_count : '—' !!}</span></td>

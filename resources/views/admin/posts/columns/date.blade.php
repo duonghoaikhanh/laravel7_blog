@@ -1,0 +1,1 @@
+<td>{!! $value->published_at !!}</td>

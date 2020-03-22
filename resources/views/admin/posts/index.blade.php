@@ -1,9 +1,9 @@
 @extends('admin.layouts.app_admin')
-@section('title', str_plural(trans(config('posts.' . $post_type . '.title'))))
+@section('title', trans(config('posts.' . $post_type . '.title')))
 @section('content')
 <div class="content_wrapper">
     <div class="page_title">
-        <h3>{!! str_plural(trans(config('posts.' . $post_type . '.title'))) !!}</h3>
+        <h3>{!! trans(config('posts.' . $post_type . '.title')) !!}</h3>
         <a class="button_title" href="{!! url('/admin/posts/' . $post_type . '/add') !!}">Add New {!! trans(config('posts.' . $post_type . '.title')) !!}</a>
     </div>
     @include('admin.includes.boxes.notify')

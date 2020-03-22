@@ -1,5 +1,5 @@
 @php
-	use App\Http\Controllers\Chap\Taxonomy;
+	use App\Http\Controllers\Common\Taxonomy;
 @endphp
 <div class="x_panel">
 	<div class="x_title">

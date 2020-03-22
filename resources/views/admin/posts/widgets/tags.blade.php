@@ -1,5 +1,5 @@
 @php
-	use App\Http\Controllers\Chap\Taxonomy;
+	use App\Http\Controllers\Common\Taxonomy;
 	$push_tags = '';
 	if(isset($data['post']->tags)){
 		if($data['post']->tags != null){

@@ -14,7 +14,27 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @if (count($post_categories) > 0)
+                        @foreach($post_categories as $category)
+                                <h3 class="title_border">
+                                    <a href="#">{!! $category->term_name !!}</a>
+                                </h3>
+                        @endforeach
+                    @else
+                    @endif
+
+                    <!-- List post -->
+                    @if (count($posts) > 0)
+                        @foreach($posts as $post)
+                            <h3 class="title_border">
+                                <a href="{{ url(route('post.detail', ['slug' => $post->post_name])) }}">
+                                    <h5>{!! $post->post_title !!}</h5>
+                                    <h5>{!! $post->post_excerpt !!}</h5>
+                                </a>
+                            </h3>
+                        @endforeach
+                    @else
+                    @endif
                 </div>
             </div>
         </div>

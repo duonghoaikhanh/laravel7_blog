@@ -47,14 +47,14 @@ class TaxonomyController extends Controller
         $this->validate($request, $rules, $messages);
         $term_taxonomy = [
             'term_name' => trim($request->term_name),
-            'term_slug' => str_slug(trim($request->term_slug)),
+            'term_slug' => trim($request->term_slug),
             'taxonomy' => $taxonomy,
             'term_description' => trim($request->term_description),
             'term_parent' => $request->term_parent,
             'term_order' => $request->term_order,
             'count' => 0
         ];
-        $check = DB::table('term_taxonomy')->where('term_slug', str_slug(trim($request->term_slug)))->where('taxonomy', $taxonomy)->where('term_parent', $request->term_parent)->count();
+        $check = DB::table('term_taxonomy')->where('term_slug', trim($request->term_slug))->where('taxonomy', $taxonomy)->where('term_parent', $request->term_parent)->count();
         if($check > 0){
             Session::flash('notify_type', 'error');
             Session::flash('notify_content', 'A term with the name provided already exists with this parent.');
@@ -106,12 +106,13 @@ class TaxonomyController extends Controller
         ];
         $this->validate($request, $rules, $messages);
         $term_name = trim($request->term_name);
-        $term_slug = str_slug(trim($request->term_slug));
+        $term_slug = trim($request->term_slug);
         if(empty($term_slug)){
-            $term_slug = str_slug($term_name);
+            $term_slug = $term_name;
         }
         $get_term_taxonomy = DB::table('term_taxonomy')->where('term_taxonomy_id', $term_taxonomy_id)->first();
-        if(count($get_term_taxonomy) > 0){
+        // if(count($get_term_taxonomy) > 0){
+		if (is_object($get_term_taxonomy)) {
             $term_taxonomy = [
                 'term_name' => $term_name,
                 'term_slug' => $term_slug,
@@ -132,14 +133,14 @@ class TaxonomyController extends Controller
     function postTaxonomyAjax(Request $request){
         $term_taxonomy = [
             'term_name' => trim($request->term_name),
-            'term_slug' => str_slug(trim($request->term_name)),
+            'term_slug' => trim($request->term_name),
             'taxonomy' => $request->taxonomy,
             'term_description' => '',
             'term_parent' => $request->term_parent,
             'term_order' => $request->term_order,
             'count' => 0
         ];
-        $check = DB::table('term_taxonomy')->where('term_slug', str_slug(trim($request->term_name)))->where('taxonomy', $request->taxonomy)->where('term_parent', $request->term_parent)->count();
+        $check = DB::table('term_taxonomy')->where('term_slug', trim($request->term_name))->where('taxonomy', $request->taxonomy)->where('term_parent', $request->term_parent)->count();
         if($check > 0){
             return 'existed';
         }else{
@@ -159,7 +160,8 @@ class TaxonomyController extends Controller
     function postSearch(Request $request, $taxonomy){
         $search_text = $request->search_text;
         $data = DB::table('term_taxonomy')->where('term_name', 'LIKE', '%' . $search_text . '%')->orWhere('term_slug', 'LIKE', '%' . $search_text . '%')->orderBy('term_name')->limit(20)->get();
-        if(count($data) == 0){
+        // if(count($data) == 0){
+		if (!is_object($data)) {
             return '<tr><td colspan="5">No items found.</td></tr>';
         }else{
             $view_base = $this->get_option('category_base');

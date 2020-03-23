@@ -17,7 +17,7 @@
 							<div class="media_upload" id="drag_drop_upload">
 								<form action="" method="POST" class="dropzone" id="dropzone_form" enctype="multipart/form-data">
 									{!! csrf_field() !!}
-									<input type="file" name="file[]" id="media_input" multiple>
+									<input type="file" name="file[]" id="media_input" multiple accept="image/*">
 									<button type="button" class="btn btn-default" id="btn_select_files">Drop Or Select Files To Upload</button>
 								</form>
 							</div>
@@ -459,6 +459,12 @@
 	$('#drag_drop_upload').dmUploader({
 		url: '{!! url('/admin/media') !!}',
 		extraData: {_token: '{!! csrf_token() !!}'},
+		maxFileSize: {
+			maxFileSize: 3000000
+		},
+		allowedTypes: {
+			allowedTypes: "image/*"
+		},
 		onInit: function(){
 			
 		},
@@ -507,7 +513,7 @@
 	    	$('#upload-file' + id).find('img.upload-image-preview').addClass(data.media_style);
 	    },
 	    onUploadError: function(id, message){
-
+			console.log('message ', message);
 	    },
 	    onFileTypeError: function(file){
 	    	

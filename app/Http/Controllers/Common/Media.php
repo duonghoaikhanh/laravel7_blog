@@ -20,11 +20,11 @@ trait Media{
     **/
 
     protected function media_upload($file, $storage_path, $use_date_folder = false, $file_name = ''){
-        $max_size = $file->getMaxFilesize();
-        $file_size = $file->getClientSize();
-        if($file_size > $max_size){
-            return false;
-        }else{
+//        $max_size = $file->getMaxFilesize();
+        $file_size = $file->getSize();
+//        if($file_size > $max_size){
+//            return false;
+//        }else{
             $storage_path = trim($storage_path, '/');
             $date_folder = date('Y-m-d');
             if($use_date_folder == true){
@@ -37,9 +37,10 @@ trait Media{
             $file_type = $this->get_media_type($extension);
             if($file_name == ''){
                 $slug_name = str_replace('.' . $extension, '', trim($file->getClientOriginalName()));
-                $file_name = str_slug($slug_name);
+                // $file_name = str_slug($slug_name);
+				$file_name = $slug_name;
             }else{
-                $file_name = str_slug(trim($file_name));
+                $file_name = trim($file_name);
             }
             $filename_origin = $file_name;
             $get_file_name = DB::table('media')->where('media_name', $file_name)->count();
@@ -96,7 +97,7 @@ trait Media{
             $media_id = DB::table('media')->insertGetId($media);
             $media['media_id'] = $media_id;
             return $media;
-        }
+        // }
     }
 
     protected function makeThumbnail($img_path, $save_path, $file_name, $file_extension){
@@ -177,9 +178,6 @@ trait Media{
     }
 
     protected function get_media_filter($media_type, $media_date, $media_search, $limit = 100){
-        $media_type = $request->media_type;
-        $media_date = $request->media_date;
-        $media_search = $request->media_search;
         $type_operator = '=';
         if($media_type == 'all'){
             $media_type = '';

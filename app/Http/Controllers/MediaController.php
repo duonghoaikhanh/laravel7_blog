@@ -17,6 +17,11 @@ class MediaController extends Controller
 
     function postMedia(Request $request){
     	$file = $request->file('file');
+		$max_size = $file->getMaxFilesize();
+		$file_size = $file->getSize();
+		if($file_size > $max_size){
+			return false;
+		}
     	$media = $this->media_upload($file, 'public/uploads', true);
     	return $media;
     }

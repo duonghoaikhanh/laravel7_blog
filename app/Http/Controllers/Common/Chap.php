@@ -80,7 +80,8 @@ trait Chap{
     public static function media($media_source, $thumb = false){
         $media = DB::table('media')->where('media_source', $media_source)->first();
         $data = $media->media_url;
-        if(sizeof($media) > 0){
+        // if(sizeof($media) > 0){
+		if (is_object($media)) {
             if($media->media_type == 'image'){
                 if($thumb == true){
                     $data = str_replace('_size_' . $media->media_width . 'x' . $media->media_height . '.' . $media->media_extension, '_thumb.' . $media->media_extension, $media->media_url);

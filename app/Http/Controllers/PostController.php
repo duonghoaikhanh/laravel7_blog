@@ -166,7 +166,8 @@ class PostController extends Controller
         $post_tags = empty($post_tags) ? [] : explode(',', $post_tags);
         $this->store_post_tags($post_id, $post_tags, $post_type . '-tag');
         $metas = $request->meta;
-        if(count($metas) > 0){
+        // if(count($metas) > 0){
+		if (is_object($metas)) {
             foreach($metas as $key => $value){
                 $this->store_post_meta($post_id, $key, $value);
             }

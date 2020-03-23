@@ -74,3 +74,10 @@ Route::prefix('admin')->name('admin.')->middleware(['role:admin', 'verified'])->
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/home/{slug}', 'HomeController@postDetail')->name('post.detail');
+
+// Service routes
+Route::get('tin-tuc', 'PostController@services')->name('list_post');
+Route::get('danh-muc-tin-tuc/{slug}', 'PostController@serviceCategories')->name('post.categories');
+Route::get('tin-tuc/{slug}', 'PostController@serviceDetail')->name('post.detail123');

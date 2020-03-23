@@ -160,8 +160,16 @@ trait Post{
         return $data;
     }
 
+	/**
+	 * Function get_post_terms relation
+	 * @param $post_id
+	 * @param $taxonomy
+	 * @return mixed
+	 */
     protected function get_post_terms($post_id, $taxonomy){
-        $data = DB::table('term_relationships')->where('object_id', $post_id)->join('term_taxonomy', 'term_relationships.term_taxonomy_id', '=', 'term_taxonomy.term_taxonomy_id')->where('taxonomy', $taxonomy)->get();
+        $data = DB::table('term_relationships')->where('object_id', $post_id)
+			->join('term_taxonomy', 'term_relationships.term_taxonomy_id', '=', 'term_taxonomy.term_taxonomy_id')
+			->where('taxonomy', $taxonomy)->get();
         return $data;
     }
 

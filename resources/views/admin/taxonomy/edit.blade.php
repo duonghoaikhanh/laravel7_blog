@@ -13,18 +13,18 @@
 				<tr>
 					<th>Name</th>
 					<td>
-						<input type="text" name="term_name" class="form-control" value="{!! $data->term_name !!}" placeholder="Name...">
+						<input type="text" name="term_name" class="form-control field_name" value="{!! $data->term_name !!}" placeholder="Name...">
 					</td>
 				</tr>
 				<tr>
 					<th>Slug</th>
 					<td>
-						<input type="text" name="term_slug" class="form-control" value="{!! $data->term_slug !!}" placeholder="Slug...">
+						<input type="text" name="term_slug" class="form-control field_slug" value="{!! $data->term_slug !!}" placeholder="Slug...">
 						<p class="input_note control_width"><i>The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</i></p>
 					</td>
 				</tr>
 				<tr>
-					<th>Parent {!! str_singular($title) !!}</th>
+					<th>Parent {!! $title !!}</th>
 					<td>
 						<select class="form-control width_auto" name="term_parent">
 							<option value="0">None</option>
@@ -34,7 +34,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>Thứ tự {!! str_singular($title) !!}</th>
+					<th>Thứ tự {!! $title !!}</th>
 					<td>
 						<input type="number" name="term_order" class="form-control" value="{!! $data->term_order !!}">
 					</td>

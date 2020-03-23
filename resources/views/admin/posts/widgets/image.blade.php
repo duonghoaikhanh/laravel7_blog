@@ -9,7 +9,8 @@
 					<div class="img_show">
 						<div class="img_thumbnail">
 							<div class="img_centered">
-								<img class="show_img_lib" src="{!! isset($data['post']->post_img) ? $data['post']->post_img : url('/contents/images/defaults/no-image.jpg') !!}" alt="Featured Image">
+								{{--<img class="show_img_lib" src="{!! isset($data['post']->post_img) ? $data['post']->post_img : url('/contents/images/defaults/no-image.jpg') !!}" alt="Featured Image">--}}
+								<img class="show_img_lib" src="{!! isset($data['post']->post_img) ? $data['post']->post_img : url('/no-image.jpg') !!}" alt="Featured Image">
 							</div>
 						</div>
 						<div class="remove_featured_image">

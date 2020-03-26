@@ -6,7 +6,8 @@ return [
         'widgets' => [
             // 'left' => ['title', 'slug', 'editor', 'excerpt', 'seo', 'author', 'discussion', 'comments'],
             'left' => ['title', 'slug', 'editor', 'excerpt', 'author'],
-            'right' => ['general', 'categories', 'tags', 'image']
+            // 'right' => ['general', 'categories', 'tags', 'image']
+			'right' => ['general', 'categories', 'image']
         ]
     ],
     'page' => [

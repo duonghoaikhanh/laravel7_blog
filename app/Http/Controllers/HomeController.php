@@ -26,8 +26,13 @@ class HomeController extends Controller
     {
     	// Get list category post
 		$post_categories = $this->get_terms('post-category', 0, 20);
+		$ids = [];
+		foreach ($post_categories as $category) {
+			$ids[] = $category->term_taxonomy_id;
+		}
+
 		//get products list
-		$posts = $this->getPostFromCategoryId($post_categories[0]->term_taxonomy_id);
+		$posts = $this->getPostFromCategoryId($ids);
 
 		$data = [
 			'post_categories' => $post_categories,
@@ -45,7 +50,7 @@ class HomeController extends Controller
 	private function getPostFromCategoryId($category_id)
 	{
 		// get product ids from category id
-		$post_ids = DB::table('term_relationships')->select('object_id')->where('term_taxonomy_id', $category_id)->pluck('object_id')->toArray();
+		$post_ids = DB::table('term_relationships')->select('object_id')->whereIn('term_taxonomy_id', $category_id)->pluck('object_id')->toArray();
 		$post_ids = empty($post_ids) ? [] : $post_ids;
 		$posts = $this->get_all_posts('post', [], 6, ['post_id', $post_ids]);
 
@@ -56,6 +61,22 @@ class HomeController extends Controller
 		$post = $this->get_post_by_slug($post_slug, 'post');
 		$data = [
 			'post' => $post
+		];
+
+		return view('detail_post', $data);
+	}
+
+	public function postCategories($post_slug) {
+		$post_categories = $this->get_terms('post-category');
+
+		$post_ids = $this->get_posts_from_term_slug($post_slug);
+
+		$list_post = $this->get_all_posts('post', [], 9, ['post_id', $post_ids]);
+
+		$data = [
+			'list_post' => $list_post,
+			'knowledge_categories' => $post_categories,
+			'slug' => $post_slug,
 		];
 
 		return view('detail_post', $data);

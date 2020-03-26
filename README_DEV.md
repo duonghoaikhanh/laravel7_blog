@@ -31,7 +31,19 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 php artisan storage:link
 
 Link prefer: https://viblo.asia/p/tim-hieu-ve-file-storage-cua-laravel-gGJ59jBpKX2
+List image upload   
+https://github.com/danielm/uploader   
+Link demo   
+https://danielmg.org/demo/java-script/uploader/basic
 
+## Config source
+Create file .env to config server, DB
+
+Run command line: php artisan key:generate
+APP_KEY=base64:w0WYQTR4a/8NBMjf8/+oByiZ3ODEsE4aJ0KcOaKwkXw=
+
+Change to URL current server   
+APP_URL=http://dev.laravel7_blog.local
 
 ## Contributing
 

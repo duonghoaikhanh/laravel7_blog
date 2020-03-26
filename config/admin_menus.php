@@ -16,8 +16,8 @@ return [
         'sub' => [
             ['priority' => 5, 'title' => 'Tất cả bài viết', 'url' => env('APP_URL') . '/admin/posts/post'],
             ['priority' => 10, 'title' => 'Thêm bài viết', 'url' => env('APP_URL') . '/admin/posts/post/add'],
-            ['priority' => 15, 'title' => 'Chuyên mục bài viết', 'url' => env('APP_URL') . '/admin/taxonomy/post-category'],
-            ['priority' => 20, 'title' => 'Thẻ bài viết', 'url' => env('APP_URL') . '/admin/taxonomy/post-tag']
+            ['priority' => 15, 'title' => 'Chuyên mục bài viết', 'url' => env('APP_URL') . '/admin/taxonomy/post-category']
+            // ['priority' => 20, 'title' => 'Thẻ bài viết', 'url' => env('APP_URL') . '/admin/taxonomy/post-tag']
         ]
     ],
     [

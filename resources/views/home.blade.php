@@ -17,7 +17,7 @@
                     @if (count($post_categories) > 0)
                         @foreach($post_categories as $category)
                                 <h3 class="title_border">
-                                    <a href="#">{!! $category->term_name !!}</a>
+                                    <a href="{{ url(route('post.categories', ['slug' => $category->term_slug])) }}">{!! $category->term_name !!}</a>
                                 </h3>
                         @endforeach
                     @else

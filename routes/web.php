@@ -76,8 +76,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/home/{slug}', 'HomeController@postDetail')->name('post.detail');
+Route::get('/home/tin-tuc/{slug}', 'HomeController@postCategories')->name('post.categories');
 
 // Service routes
 Route::get('tin-tuc', 'PostController@services')->name('list_post');
-Route::get('danh-muc-tin-tuc/{slug}', 'PostController@serviceCategories')->name('post.categories');
+Route::get('danh-muc-tin-tuc/{slug}', 'PostController@serviceCategories')->name('post.categories12323');
 Route::get('tin-tuc/{slug}', 'PostController@serviceDetail')->name('post.detail123');
